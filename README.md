@@ -71,57 +71,24 @@ worker3IP slots=4 max_slots=40
 
 ## compiling PHITS for MPI on MacOS
 use the following the in ?make file? of the PHITS source code 
-```[6/22 1:22 PM] Gregory Field
-
-using brew install: openmpi
-
-use ENVFLAG = MacGFort
-
- 
-
+```c
+ENVFLAG = MacGFort
 ### Mac gfortran (4.8, 7.0 or later)
 
 
 ifeq ($(ENVFLAGS),MacGfort)
-
-
  OtherGfortran = true
-
-
- SRCS8    += mdp-uni90.f
-
-
- FC        = mpifort  # you have to revise the version
-
-
+ SRCS8 += mdp-uni90.f
+ FC  = mpifort  # you have to revise the version
  FFLAGS    = -O0 -fdefault-double-8 -fdefault-real-8 -fdollar-ok -std=legacy
-
-
  ifeq ($(USEMPI),true)
-
-
   FFLAGS  +=   $(shell mpifort -showme:compile)
-
-
   FFLAGS  += -I$(shell mpifort -showme:incdirs)
-
-
   LDFLAGS  =   $(shell mpifort -showme:link)
-
-
   LDLIBS   = -lmpi_usempi -lmpi_mpifh -lmpi
-
-
  endif
-
-
  ifeq ($(USEOMP),true)
-
-
   FFLAGS += -fopenmp
-
-
  endif
-
-
-endif```
+endif
+```
