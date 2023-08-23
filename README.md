@@ -34,7 +34,11 @@ cat id_rsa.pub >> authorized_keys
 ssh-copy-id ipaddressofmanager
 ```
 
-1. Setup NFS, on manager node, run
+5. Setup NFS, on manager node, make cloud directory
+```zsh
+mkdir cloud
+```
+then run
 ```zsh
 sudo nano /etc/exports
 ```
@@ -42,13 +46,36 @@ add
 ```
 /Users/mpiuser/cloud -maproot=mpiuser WorkerIPAddresses
 ```
+then run 
+```zsh
+sudo nano /etc/hosts
+```
+add
+```
+manager MANAGERIPADDRESS
+worker1 WORKER1IPADDRESS
+worker2 WORKER2IPADDRESS
+```
 then run
 ```zsh
 nfsd restart
 ```
+to check that it is properly set up run
+```zsh
+showmount -e
+```
 On worker nodes, run 
 ```zsh
-sudo mount -t nfs manageripaddress:/home/mpiuser/cloud ~/cloud
+sudo nano /etc/hosts
+```
+add
+```
+manager MANAGERIPADDRESS
+worker1 WORKER1IPADDRESS
+```
+then run
+```zsh
+sudo mount -t nfs manager:/home/mpiuser/cloud ~/cloud
 ```
 check by running `df -h` on workers
 
@@ -62,10 +89,10 @@ mpirun -hostfile my_host ./mpi_hello
 ```
 Where my_host is a file that looks like
 ```zsh
-managerIP slots=4 max_slots=40
-worker1IP slots=4 max_slots=40
-worker2IP  max_slots=40
-worker3IP slots=4 max_slots=40
+managerIPaddress slots=4 max_slots=40
+worker1IPaddress slots=4 max_slots=40
+worker2IPaddress  max_slots=40
+worker3IPaddress slots=4 max_slots=40
 ```
 
 ## compiling PHITS for MPI on MacOS
