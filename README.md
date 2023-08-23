@@ -15,9 +15,12 @@ This repository contains the information on how to implement a beowulf cluster o
 Whenever the cluster is set up, one device will act as the "manager" node, and all other devices with act as "worker" nodes. Whenever the manager does certain tasks for setup, the manager must do this for all worker IPs. 
 ## Setup
 1. install open mpi by running `brew install openmpi`
-1. Create new user called mpiuser under System Settings>Users and Groups>Add account. Make sure this account is an admin on the device
-1. Go to System Settings>General>Sharing and enable remote login (this allows other devices to ssh into the device)
-1. create ssh keys for all devices on manager run the following and follow the next prompts.
+1. Create new user called mpiuser under System Settings>Users and Groups>Add account. Make sure this account is an admin on the device. From now on, all commands should be run through the mpiuser. To switch users run
+```zsh
+su - mpiuser
+```
+3. Go to System Settings>General>Sharing and enable remote login (this allows other devices to ssh into the device)
+4. create ssh keys for all devices on manager run the following and follow the next prompts.
 ```zsh
 ssh-keygen -t rsa
 cd .ssh/
