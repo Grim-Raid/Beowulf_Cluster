@@ -40,7 +40,7 @@ sudo nano /etc/exports
 ```
 add
 ```
-/Users/mpiuser/cloud -maproot=mpiuser 169.254.73.186
+/Users/mpiuser/cloud -maproot=mpiuser WorkerIPAddresses
 ```
 then run
 ```zsh
