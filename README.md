@@ -40,8 +40,7 @@ sudo nano /etc/exports
 ```
 add
 ```
-***WIP because I forgot that MacOS uses dumb syntax, need to check on mac studio in lab***
-/Users/mpiuser/cloud workeripaddresss(rw,sync,no_root_squash,no_subtree_check) 
+/Users/mpiuser/cloud -maproot=mpiuser 169.254.73.186
 ```
 then run
 ```zsh
