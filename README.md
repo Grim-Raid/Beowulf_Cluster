@@ -97,6 +97,7 @@ worker1IPaddress slots=4 max_slots=40
 worker2IPaddress  max_slots=40
 worker3IPaddress slots=4 max_slots=40
 ```
+In order for this to work smoothly on all devices, **All program files must be included in the cloud directory**
 
 ## compiling PHITS for MPI on MacOS
 use the following the in ?make file? of the PHITS source code 
